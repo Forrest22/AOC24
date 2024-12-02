@@ -69,7 +69,7 @@ func ComputeColumnDifferences(column1 []int, column2 []int) []int {
 	return differences
 }
 
-func mainOld() {
+func maind1p1() {
 	// Call the function to read the file
 	column1, column2, err := ReadColumnsFromFile("input")
 	if err != nil {

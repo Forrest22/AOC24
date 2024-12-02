@@ -62,7 +62,7 @@ func ComputeColumnDifferencesOfMap(column1 []int, frequencyMap map[int]int) []in
 	return frequencies
 }
 
-func main() {
+func maind1p2() {
 	// Call the function to read the file
 	column1, frequencyMap, err := ReadColumnsFromFileButSecondColumnIsADict("input")
 	if err != nil {
