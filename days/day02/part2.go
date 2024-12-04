@@ -120,7 +120,7 @@ func isReportSafe(line string, hasAlreadyRecursed bool) (bool, error) {
 func day2Part2() (string, error) {
 	safeReports, err := readReportsFromFileLineByLineWithProblemDampener("days/day02/input")
 	if err != nil {
-		return "", fmt.Errorf("Error: %v", err)
+		return "", fmt.Errorf("error: %v", err)
 	}
 
 	// Output the results

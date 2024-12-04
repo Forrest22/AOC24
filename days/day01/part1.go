@@ -73,7 +73,7 @@ func day1Part1() (string, error) {
 	// Call the function to read the file
 	column1, column2, err := readColumnsFromFile("days/day01/input")
 	if err != nil {
-		return "", fmt.Errorf("Error: %v", err)
+		return "", fmt.Errorf("error: %v", err)
 	}
 
 	diffArray := computeColumnDifferences(column1, column2)

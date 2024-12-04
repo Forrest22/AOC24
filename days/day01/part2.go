@@ -66,7 +66,7 @@ func day1Part2() (string, error) {
 	// Call the function to read the file
 	column1, frequencyMap, err := readColumnsFromFileButSecondColumnIsADict("days/day01/input")
 	if err != nil {
-		return "", fmt.Errorf("Error: %v", err)
+		return "", fmt.Errorf("error: %v", err)
 	}
 
 	diffArray := computeColumnDifferencesOfMap(column1, frequencyMap)
