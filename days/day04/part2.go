@@ -7,11 +7,8 @@ import (
 	"strconv"
 )
 
-// Reads each line of a list of reports (each line a report) and returns the number of safe reports.
-// Safe if:
-// - The levels are either all increasing or all decreasing.
-// - Any two adjacent levels differ by at least one and at most three.
-func readCorruptedMemoryWithConditionals(filename string) (int, error) {
+// Reads each line of a input file and starts the wordsearch
+func searchWordsearchForLiteralXMas(filename string) (int, error) {
 	// Open the input file
 	file, err := os.Open(filename)
 	if err != nil {
@@ -19,18 +16,20 @@ func readCorruptedMemoryWithConditionals(filename string) (int, error) {
 	}
 	defer file.Close()
 
-	var answer int
 	// Read and process the file line by line
 	scanner := bufio.NewScanner(file)
-	var allText string
+	var allText []string
 	for scanner.Scan() {
-		allText += scanner.Text()
+		allText = append(allText, scanner.Text())
 	}
 
-	answer, err = getLineSumConditional(allText)
-
-	if err != nil {
-		return 0, fmt.Errorf("error getting answer: %w", err)
+	var sum int
+	for i, row := range allText {
+		for j := range row {
+			if isIndexPartOfXMas(allText, WordSearchIndex{row: i, column: j}) {
+				sum++
+			}
+		}
 	}
 
 	// Check for errors during scanning
@@ -38,20 +37,71 @@ func readCorruptedMemoryWithConditionals(filename string) (int, error) {
 		return 0, fmt.Errorf("error reading file: %w", err)
 	}
 
-	return answer, nil
+	return sum, nil
 }
 
-func getLineSumConditional(line string) (int, error) {
+func getDiagonalDirectionFromIotaInt(i int) Direction {
+	return Direction((i % 4) + 4)
+}
 
-	return -1, nil
+/*
+ * This word search allows words to be horizontal, vertical, diagonal, written backwards, or even overlapping other words.
+ * Must find all instances of targetWord
+ */
+func isIndexPartOfXMas(wordsearch []string, index WordSearchIndex) bool {
+
+	// check if the first letter matches the target, in this case we want the centerpeice 'A'
+	if getRuneAtWordsearchIndex(wordsearch, index) != rune('A') {
+		return false
+	}
+
+	sumOfFoundMatches := 0
+
+	for i := range 4 {
+		if isXMasMatchInDirection(wordsearch, index, getDiagonalDirectionFromIotaInt(i)) {
+			sumOfFoundMatches++
+		}
+	}
+
+	return sumOfFoundMatches == 2
+}
+
+// because we're statring at that 'A' we need to look diagnonally opposite for M and S
+func isXMasMatchInDirection(wordsearch []string, startingIndex WordSearchIndex, direction Direction) bool {
+	previousPoint := indexInDirection(startingIndex, getDiagonalDirectionFromIotaInt(int(direction)+2))
+	previousTarget := 'M'
+	nextPoint := indexInDirection(startingIndex, direction)
+	nextTarget := 'S'
+
+	if isWordSearchIndexOOB(wordsearch, previousPoint) {
+		// OOB means no match
+		return false
+	}
+
+	// check if rune matches in opposite directions
+	if previousTarget != getRuneAtWordsearchIndex(wordsearch, previousPoint) {
+		return false
+	}
+
+	if isWordSearchIndexOOB(wordsearch, nextPoint) {
+		// OOB means no match
+		return false
+	}
+
+	// check if rune matches in opposite directions
+	if nextTarget != getRuneAtWordsearchIndex(wordsearch, nextPoint) {
+		return false
+	}
+
+	return true
 }
 
 func day4Part2() (string, error) {
-	safeReports, err := readCorruptedMemoryWithConditionals("days/day03/input")
+	sumOfWordsFound, err := searchWordsearchForLiteralXMas("days/day04/input")
 	if err != nil {
 		return "", fmt.Errorf("error: %v", err)
 	}
 
 	// Output the results
-	return strconv.Itoa(safeReports), nil
+	return strconv.Itoa(sumOfWordsFound), nil
 }
