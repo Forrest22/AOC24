@@ -127,11 +127,11 @@ func isValidEquationWithConcat(validEquationFromLine ValidEquationPlus) bool {
 }
 
 func day7Part2() (string, error) {
-	sumOfWordsFound, err := getSumOfValidEquationsWithConcat("days/day07/input")
+	sumOfValidEquations, err := getSumOfValidEquationsWithConcat("days/day07/input")
 	if err != nil {
 		return "", fmt.Errorf("error: %v", err)
 	}
 
 	// Output the results
-	return strconv.Itoa(sumOfWordsFound), nil
+	return strconv.Itoa(sumOfValidEquations), nil
 }

@@ -86,11 +86,11 @@ func getValidOrder(pagesSplitAsString []string, rulesDict map[int][]int) []int {
 }
 
 func day5Part2() (string, error) {
-	sumOfWordsFound, err := sumOfMiddlePagesOfOnlyFixedLines("days/day05/input")
+	sumOfMiddlePages, err := sumOfMiddlePagesOfOnlyFixedLines("days/day05/input")
 	if err != nil {
 		return "", fmt.Errorf("error: %v", err)
 	}
 
 	// Output the results
-	return strconv.Itoa(sumOfWordsFound), nil
+	return strconv.Itoa(sumOfMiddlePages), nil
 }

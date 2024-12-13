@@ -181,11 +181,11 @@ func doesRecursivelyRunningGuardFindALoop(guardMap *[]string, guardStartingPoint
 }
 
 func day6Part2() (string, error) {
-	sumOfWordsFound, err := getObstructionUniquePositions("days/day06/input")
+	countOfLoopMakingObstructions, err := getObstructionUniquePositions("days/day06/input")
 	if err != nil {
 		return "", fmt.Errorf("error: %v", err)
 	}
 
 	// Output the results
-	return strconv.Itoa(sumOfWordsFound), nil
+	return strconv.Itoa(countOfLoopMakingObstructions), nil
 }

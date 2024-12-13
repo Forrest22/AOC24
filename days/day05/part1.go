@@ -102,11 +102,11 @@ func isValidSoFar(pageToCheck int, previousPagesInUpdate []int, rulesDict map[in
 }
 
 func day5Part1() (string, error) {
-	sumOfWordsFound, err := sumOfCorrectMiddlePages("days/day05/input")
+	sumOfMiddlePages, err := sumOfCorrectMiddlePages("days/day05/input")
 	if err != nil {
 		return "", fmt.Errorf("error: %v", err)
 	}
 
 	// Output the results
-	return strconv.Itoa(sumOfWordsFound), nil
+	return strconv.Itoa(sumOfMiddlePages), nil
 }

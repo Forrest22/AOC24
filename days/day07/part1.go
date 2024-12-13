@@ -118,11 +118,11 @@ func isValidEquation(validEquationFromLine ValidEquation) bool {
 }
 
 func day7Part1() (string, error) {
-	sumOfWordsFound, err := getSumOfValidEquations("days/day07/input")
+	sumOfValidEquations, err := getSumOfValidEquations("days/day07/input")
 	if err != nil {
 		return "", fmt.Errorf("error: %v", err)
 	}
 
 	// Output the results
-	return strconv.Itoa(sumOfWordsFound), nil
+	return strconv.Itoa(sumOfValidEquations), nil
 }

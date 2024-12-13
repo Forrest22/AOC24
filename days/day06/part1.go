@@ -156,11 +156,11 @@ func recursivelyMoveGuard(guardMap *[]string, guardStartingPoint MapIndex, direc
 }
 
 func day6Part1() (string, error) {
-	sumOfWordsFound, err := getGuardDistictPositions("days/day06/input")
+	sumOfGuardPositions, err := getGuardDistictPositions("days/day06/input")
 	if err != nil {
 		return "", fmt.Errorf("error: %v", err)
 	}
 
 	// Output the results
-	return strconv.Itoa(sumOfWordsFound), nil
+	return strconv.Itoa(sumOfGuardPositions), nil
 }
