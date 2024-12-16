@@ -18,7 +18,6 @@ func day11Part1() (string, error) {
 	return strconv.Itoa(totalCountOfStones), nil
 }
 
-// I rewrote this for part 2 hoping that ints would save me but it was not the problem of why my program would run out of memory and crash :(
 func getTotalCountOfStones(filename string, blinks int) (int, error) {
 	stones := getStonesFromInput(filename)
 	for i := 0; i < blinks; i++ {
