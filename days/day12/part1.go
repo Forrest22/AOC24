@@ -121,7 +121,7 @@ func calculateGardenPlotPerimeter(gardenPlots []GardenPlotIndex, gardenMap []str
 	for i := range gardenPlots {
 		currentIndex := gardenPlots[i]
 		for j := range 4 {
-			borderIndex := indexInDirection(gardenPlots[i], SearchDirection(j))
+			borderIndex := indexInDirection(currentIndex, SearchDirection(j))
 			if isIndexOOB(gardenMap, borderIndex) || gardenMap[currentIndex.row][currentIndex.column] != gardenMap[borderIndex.row][borderIndex.column] {
 				perimeter++
 			}
@@ -176,13 +176,9 @@ func getGardenMap(filename string) []string {
 	// Read and process the file line by line
 	scanner := bufio.NewScanner(file)
 	gardenMap := []string{}
-	// gardenPlotAreaMapping := map[rune]int{}
 	for scanner.Scan() {
 		rowInGarden := scanner.Text()
 		gardenMap = append(gardenMap, rowInGarden)
-		// for i := range rowInGarden {
-		// 	gardenPlotAreaMapping[rune(rowInGarden[i])] += 1
-		// }
 	}
 	return gardenMap
 }
