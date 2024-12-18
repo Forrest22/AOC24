@@ -169,7 +169,7 @@ func getGardenMap(filename string) []string {
 	// Open the input file
 	file, err := os.Open(filename)
 	if err != nil {
-		panic(fmt.Errorf("error parsing trail map: %v", err))
+		panic(fmt.Errorf("error parsing garden map: %v", err))
 	}
 	defer file.Close()
 

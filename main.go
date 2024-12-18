@@ -13,6 +13,7 @@ import (
 	"AOC24/days/day10"
 	"AOC24/days/day11"
 	"AOC24/days/day12"
+	"AOC24/days/day13"
 	"fmt"
 	"os"
 	"strconv"
@@ -64,6 +65,8 @@ func main() {
 		runDay(day11.Solve, part)
 	case 12:
 		runDay(day12.Solve, part)
+	case 13:
+		runDay(day13.Solve, part)
 	// Add more cases for additional days
 	default:
 		fmt.Printf("Day %d is not implemented yet.\n", day)
